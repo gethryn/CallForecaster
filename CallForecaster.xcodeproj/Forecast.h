@@ -52,17 +52,12 @@ typedef enum {INTRADAY, DAILY, MONTHLY, YEARLY} forecastType;
     ForecastModel *fcModel;
 }
 
-
-
 // shorthand for day of year, etc
 -(int)dayOfYearWithYear:(NSDate *)forecastDate;
 -(int)daysOpenInMonth:(monthName)monthName;
 
-
 // create an interval name by providing the number of seconds
 -(NSString *)getIntervalWithSeconds:(int)seconds andIntervalLength:(intervalLength)intLength;
-
-
 
 // create a forecasted value for a given period
 -(int)forecastForMonth:(monthName)forecastMonth withAnnualVolume:(int)ncoAnnual;

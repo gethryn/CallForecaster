@@ -12,7 +12,7 @@
 
 // to allow for systems that label intervals with end time vs start time
 typedef enum { LABELISSTART, LABELISEND } intervalLabelType; 
-typedef enum {MONTH, WEEKDAY, INTERVAL, HOLIDAY} factorType;
+typedef enum {MONTHFACTOR, WEEKDAYFACTOR, INTERVALFACTOR, HOLIDAYFACTOR} factorType;
 typedef enum {k15MIN = 900, k30MIN = 1800, k60MIN = 3600} intervalLength;
 typedef enum {JAN=1,FEB=2,MAR=3,APR=4,MAY=5,JUN=6,JUL=7,AUG=8,SEP=9,OCT=10,NOV=11,DEC=12} monthName;
 typedef enum {SUN,MON,TUE,WED,THU,FRI,SAT,HOL} dayName;
@@ -26,7 +26,7 @@ typedef enum {SUN,MON,TUE,WED,THU,FRI,SAT,HOL} dayName;
     NSDate *lastUpdated;
     NSArray *hoursOfOperation;
     NSMutableArray *holidays;
-    NSArray *factors;
+    NSDictionary *factors;
     NSDictionary *inputs;
     Shrinkage *shrink;
     intervalLabelType intLabel;
@@ -35,29 +35,34 @@ typedef enum {SUN,MON,TUE,WED,THU,FRI,SAT,HOL} dayName;
 
 @property (assign) NSString *modelName, *groupIdentifier, *groupName, *userName; 
 @property (assign) NSDate *lastUpdated;
-@property (assign) NSArray *hoursOfOperation, *factors;
+@property (assign) NSArray *hoursOfOperation;
 @property (assign) NSMutableArray *holidays;
 @property (assign) Shrinkage *shrink;
-@property (assign) NSDictionary *inputs;
+@property (assign) NSDictionary *inputs, *factors;
 @property (readwrite) intervalLabelType intLabel;
 @property (readwrite) intervalLength intLength;
 
 // how many intervals in one day, based on interval length
 -(int)intervalsInDay:(intervalLength)intLength;
+-(int)workDaysInMonth:(monthName)month andYear:(int)year;
+-(int)workDaysInYear:(int)year;
+-(int)getTimeinSeconds:(NSDate *)intervalStart;
 
 // create hours of operation (HOOP) arrays of intervals
+-(BOOL)setHoursOfOperationforDay:(dayName)day withOpenTime:(int)openTime andCloseTime:(int)closeTime;
 -(NSArray *)getHOOPArrayOfIntervalsForDay:(dayName)day;
 -(NSDictionary *)getHOOPForAllDays; //dictionary would contain dayName, then NSArray of intervals for each dayName.
 -(NSArray *)getHOOPArrayOfIntervalsFrom:(NSDate *)openTime to:(NSDate *)closeTime forDay:(dayName)day;
 -(NSString *)makeIntervalLabelForIntervalStaringAt:(NSDate *)intStart withMarker:(BOOL)includeMarker;
 
 // create or read in factors
+-(BOOL)addFactorsToSelf;
 -(NSDictionary *)getFactorsFromCSV:(NSString *)fileName forType:(factorType)factorType;
 -(NSDictionary *)buildFactorsFromArray:(NSArray *)factorArray forType:(factorType)factorType withFactors:(NSArray *)factorValues;
 
 // create or read in holidays
--(NSDictionary *)getHolidaysFromCSV:(NSString *)fileName;
--(NSDictionary *)buildHolidaysFromArray:(NSArray *)holidayArray;
+-(NSArray *)getHolidaysFromCSV:(NSString *)fileName;
+-(BOOL)addHolidaysToSelf;
 -(BOOL)addHolidayForDate:(NSDate *)holDate withDesc:(NSString *)holDesc andHolidayFactor:(float)holFactor;
 -(BOOL)removeHolidayForDate:(NSDate *)holDate;
 -(BOOL)isHoliday:(NSDate *)holDate;
@@ -67,9 +72,9 @@ typedef enum {SUN,MON,TUE,WED,THU,FRI,SAT,HOL} dayName;
                     andIntervalLength:(intervalLength)inputIntLength andMaxOcc:(int)inputMaxOcc;
 
 // constructor
--(ForecastModel *)forecastModelWithName:(NSString *)modelName andGroupIdentifier:(NSString *)groupID andGroupName:(NSString *)groupName
-                            andUsername:(NSString *)username andIntervalLength:(intervalLength)intLength 
-                   andIntervalLabelType:(intervalLabelType)intLabelType andHOOP:(NSArray *)hoursOfOp andHolidays:(NSArray *)hols
-                              andInputs:(NSDictionary *)inputs andShrinkageFactor:(Shrinkage *)shrinkModel andFactors:(NSArray *)fct;
+-(ForecastModel *)forecastModelWithName:(NSString *)name andGroupIdentifier:(NSString *)grpID andGroupName:(NSString *)grpName
+                            andUsername:(NSString *)user andIntervalLength:(intervalLength)intLen 
+                   andIntervalLabelType:(intervalLabelType)intLabType andHOOP:(NSArray *)hoursOfOp andHolidays:(NSArray *)hols
+                              andInputs:(NSDictionary *)dictInputs andShrinkageFactor:(Shrinkage *)shrinkModel andFactors:(NSArray *)fct;
 
 @end
