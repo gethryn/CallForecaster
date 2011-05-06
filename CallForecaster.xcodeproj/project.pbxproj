@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		49CC4E141373D5660023462C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49CC4E131373D5660023462C /* Foundation.framework */; };
 		49CC4E171373D5660023462C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CC4E161373D5660023462C /* main.m */; };
+		49CC4E221373D5960023462C /* Forecast.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CC4E211373D5960023462C /* Forecast.m */; };
+		49CC4E251373EA370023462C /* Shrinkage.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CC4E241373EA370023462C /* Shrinkage.m */; };
+		49CC4E2C1373EAE40023462C /* erlangc.c in Sources */ = {isa = PBXBuildFile; fileRef = 49CC4E261373EAE40023462C /* erlangc.c */; };
+		49CC4E2D1373EAE40023462C /* ErlangRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CC4E291373EAE40023462C /* ErlangRequest.m */; };
+		49CC4E2E1373EAE40023462C /* gammadist.c in Sources */ = {isa = PBXBuildFile; fileRef = 49CC4E2A1373EAE40023462C /* gammadist.c */; };
+		49CC4E311373EBC10023462C /* ForecastModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CC4E301373EBC10023462C /* ForecastModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,8 +33,20 @@
 		49CC4E0F1373D5660023462C /* CallForecaster */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CallForecaster; sourceTree = BUILT_PRODUCTS_DIR; };
 		49CC4E131373D5660023462C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		49CC4E161373D5660023462C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		49CC4E191373D5660023462C /* CallForecaster-Prefix.pch */ = {isa = PBXFileReference; path = "CallForecaster-Prefix.pch"; sourceTree = "<group>"; };
+		49CC4E191373D5660023462C /* CallForecaster-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CallForecaster-Prefix.pch"; sourceTree = "<group>"; };
 		49CC4E1A1373D5660023462C /* CallForecaster.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = CallForecaster.1; sourceTree = "<group>"; };
+		49CC4E201373D5960023462C /* Forecast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Forecast.h; path = CallForecaster.xcodeproj/Forecast.h; sourceTree = SOURCE_ROOT; };
+		49CC4E211373D5960023462C /* Forecast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Forecast.m; path = CallForecaster.xcodeproj/Forecast.m; sourceTree = SOURCE_ROOT; };
+		49CC4E231373EA370023462C /* Shrinkage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shrinkage.h; sourceTree = SOURCE_ROOT; };
+		49CC4E241373EA370023462C /* Shrinkage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shrinkage.m; sourceTree = SOURCE_ROOT; };
+		49CC4E261373EAE40023462C /* erlangc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = erlangc.c; sourceTree = SOURCE_ROOT; };
+		49CC4E271373EAE40023462C /* erlangc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = erlangc.h; sourceTree = SOURCE_ROOT; };
+		49CC4E281373EAE40023462C /* ErlangRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErlangRequest.h; sourceTree = SOURCE_ROOT; };
+		49CC4E291373EAE40023462C /* ErlangRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErlangRequest.m; sourceTree = SOURCE_ROOT; };
+		49CC4E2A1373EAE40023462C /* gammadist.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = gammadist.c; sourceTree = SOURCE_ROOT; };
+		49CC4E2B1373EAE40023462C /* gammadist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gammadist.h; sourceTree = SOURCE_ROOT; };
+		49CC4E2F1373EBC10023462C /* ForecastModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForecastModel.h; sourceTree = SOURCE_ROOT; };
+		49CC4E301373EBC10023462C /* ForecastModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForecastModel.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +99,18 @@
 		49CC4E181373D5660023462C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				49CC4E201373D5960023462C /* Forecast.h */,
+				49CC4E211373D5960023462C /* Forecast.m */,
+				49CC4E2F1373EBC10023462C /* ForecastModel.h */,
+				49CC4E301373EBC10023462C /* ForecastModel.m */,
+				49CC4E281373EAE40023462C /* ErlangRequest.h */,
+				49CC4E291373EAE40023462C /* ErlangRequest.m */,
+				49CC4E231373EA370023462C /* Shrinkage.h */,
+				49CC4E241373EA370023462C /* Shrinkage.m */,
+				49CC4E261373EAE40023462C /* erlangc.c */,
+				49CC4E271373EAE40023462C /* erlangc.h */,
+				49CC4E2A1373EAE40023462C /* gammadist.c */,
+				49CC4E2B1373EAE40023462C /* gammadist.h */,
 				49CC4E191373D5660023462C /* CallForecaster-Prefix.pch */,
 			);
 			name = "Supporting Files";
@@ -134,6 +164,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				49CC4E171373D5660023462C /* main.m in Sources */,
+				49CC4E221373D5960023462C /* Forecast.m in Sources */,
+				49CC4E251373EA370023462C /* Shrinkage.m in Sources */,
+				49CC4E2C1373EAE40023462C /* erlangc.c in Sources */,
+				49CC4E2D1373EAE40023462C /* ErlangRequest.m in Sources */,
+				49CC4E2E1373EAE40023462C /* gammadist.c in Sources */,
+				49CC4E311373EBC10023462C /* ForecastModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
