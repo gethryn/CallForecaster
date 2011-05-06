@@ -31,6 +31,8 @@ typedef enum {SUN,MON,TUE,WED,THU,FRI,SAT,HOL} dayName;
     Shrinkage *shrink;
     intervalLabelType intLabel;
     intervalLength intLength; // what is the length of the interval
+    BOOL isValid;
+    int modelForecastYear, modelYearNCO, modelMonthAvgNCO, modelDayAvgNCO, modelIntervalAvgNCO;
 }
 
 @property (assign) NSString *modelName, *groupIdentifier, *groupName, *userName; 
@@ -41,6 +43,8 @@ typedef enum {SUN,MON,TUE,WED,THU,FRI,SAT,HOL} dayName;
 @property (assign) NSDictionary *inputs, *factors;
 @property (readwrite) intervalLabelType intLabel;
 @property (readwrite) intervalLength intLength;
+@property (readwrite) BOOL isValid;
+@property (readwrite) int modelForecastYear, modelYearNCO, modelMonthAvgNCO, modelDayAvgNCO, modelIntervalAvgNCO;
 
 // how many intervals in one day, based on interval length
 -(int)intervalsInDay:(intervalLength)intLength;
@@ -49,6 +53,7 @@ typedef enum {SUN,MON,TUE,WED,THU,FRI,SAT,HOL} dayName;
 -(int)getTimeinSeconds:(NSDate *)intervalStart;
 
 // create hours of operation (HOOP) arrays of intervals
+-(BOOL)addHoursOfOperationToSelf;
 -(BOOL)setHoursOfOperationforDay:(dayName)day withOpenTime:(int)openTime andCloseTime:(int)closeTime;
 -(NSArray *)getHOOPArrayOfIntervalsForDay:(dayName)day;
 -(NSDictionary *)getHOOPForAllDays; //dictionary would contain dayName, then NSArray of intervals for each dayName.
@@ -68,13 +73,17 @@ typedef enum {SUN,MON,TUE,WED,THU,FRI,SAT,HOL} dayName;
 -(BOOL)isHoliday:(NSDate *)holDate;
 
 // inputs dictionary
+-(BOOL)addInputsToSelf;
 -(NSDictionary *)configureInputsAsAHT:(int)inputAHT andSvlGoal:(int)inputSvlGoal andASAGoal:(int)inputASAGoal 
                     andIntervalLength:(intervalLength)inputIntLength andMaxOcc:(int)inputMaxOcc;
 
+// shrinkage model
+-(BOOL)addShrinkageModelToSelf;
+
 // constructor
--(ForecastModel *)forecastModelWithName:(NSString *)name andGroupIdentifier:(NSString *)grpID andGroupName:(NSString *)grpName
-                            andUsername:(NSString *)user andIntervalLength:(intervalLength)intLen 
-                   andIntervalLabelType:(intervalLabelType)intLabType andHOOP:(NSArray *)hoursOfOp andHolidays:(NSArray *)hols
+-(ForecastModel *)initWithName:(NSString *)name andGroupIdentifier:(NSString *)grpID andGroupName:(NSString *)grpName
+                            andUsername:(NSString *)username andIntervalLength:(intervalLength)intLen 
+                   andIntervalLabelType:(intervalLabelType)intLabType andHOOP:(NSArray *)hoursOfOp andHolidays:(NSArray *)hol
                               andInputs:(NSDictionary *)dictInputs andShrinkageFactor:(Shrinkage *)shrinkModel andFactors:(NSArray *)fct;
 
 @end

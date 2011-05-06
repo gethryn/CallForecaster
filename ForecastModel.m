@@ -10,21 +10,63 @@
 
 /*
  
- typedef enum { LABELISSTART, LABELISEND } intervalLabelType; 
- typedef enum {MONTHFACTOR, WEEKDAYFACTOR, INTERVALFACTOR, HOLIDAYFACTOR} factorType;
- typedef enum {k15MIN = 900, k30MIN = 1800, k60MIN = 3600} intervalLength;
- typedef enum {JAN=1,FEB=2,MAR=3,APR=4,MAY=5,JUN=6,JUL=7,AUG=8,SEP=9,OCT=10,NOV=11,DEC=12} monthName;
- typedef enum {SUN,MON,TUE,WED,THU,FRI,SAT,HOL} dayName;
+ May want to add a category that will allow calculation of Factors based on analysis of call volumes.
+ Object currently assumes that factors are already calculated (e.g. from spreadsheet).
  
  */
 
 @implementation ForecastModel
 
 @synthesize modelName, groupIdentifier, groupName, userName, lastUpdated, hoursOfOperation, 
-factors, holidays, shrink, inputs, intLabel, intLength;
+factors, holidays, shrink, inputs, intLabel, intLength, isValid,
+modelForecastYear, modelYearNCO, modelMonthAvgNCO, modelDayAvgNCO, modelIntervalAvgNCO;
+
+// how many intervals in one day, based on interval length
+-(int)intervalsInDay:(intervalLength)intLength{
+    //
+    return 0;
+}
+
+-(int)workDaysInMonth:(monthName)month andYear:(int)year{
+    //
+    return 0;
+}
+
+-(int)workDaysInYear:(int)year{
+    //
+    return 0;
+}
+
+-(int)getTimeinSeconds:(NSDate *)intervalStart {
+    //
+    return 0;
+}
 
 // create hours of operation (HOOP) arrays of intervals
-
+-(BOOL)addHoursOfOperationToSelf {
+    
+    //used in debug, will use csv/plist in app.
+    NSMutableArray *hoop = [[NSMutableArray alloc] initWithCapacity:(86400/intLength)];
+    int openTime = 32400;   // 9:00 AM
+    int closeTime = 61200;  // 5:00 PM
+    
+    for (int i = 1 ; i <= 5; i++) {  // M-F
+        [hoop addObject:[NSDictionary dictionaryWithObjectsAndKeys:
+                         [NSNumber numberWithInt:i],        @"weekday",
+                         [NSNumber numberWithInt:openTime], @"open",
+                         [NSNumber numberWithInt:closeTime],@"close",
+                         nil]];
+        
+    }
+    
+    hoursOfOperation = [(NSArray *)hoop copy];
+    [hoop release];
+    
+    if ([hoursOfOperation count] > 0) {
+        return YES;
+    }
+    return NO;
+}
 
 -(BOOL)setHoursOfOperationforDay:(dayName)day withOpenTime:(int)openTime andCloseTime:(int)closeTime{
     return NO;
@@ -50,26 +92,7 @@ factors, holidays, shrink, inputs, intLabel, intLength;
     return @"";
 }
 
-// how many intervals in one day, based on interval length
--(int)intervalsInDay:(intervalLength)intLength{
-    //
-    return 0;
-}
 
--(int)workDaysInMonth:(monthName)month andYear:(int)year{
-    //
-    return 0;
-}
-
--(int)workDaysInYear:(int)year{
-    //
-    return 0;
-}
-
--(int)getTimeinSeconds:(NSDate *)intervalStart {
-    //
-    return 0;
-}
 
 // create or read in factors
 -(BOOL)addFactorsToSelf {
@@ -158,9 +181,9 @@ factors, holidays, shrink, inputs, intLabel, intLength;
     
     // set up dictionary to hold each factor type: key=factorType, value=NSArray*factors
     NSDictionary *dict =   [[NSDictionary alloc] initWithObjectsAndKeys:
-                            [NSNumber numberWithInt:MONTHFACTOR],    [monthly copy],
-                            [NSNumber numberWithInt:WEEKDAYFACTOR],  [weekday copy],
-                            [NSNumber numberWithInt:INTERVALFACTOR],  [byinterval copy],
+                            [monthly copy],     [NSNumber numberWithInt:MONTHFACTOR],
+                            [weekday copy],     [NSNumber numberWithInt:WEEKDAYFACTOR],  
+                            [byinterval copy],  [NSNumber numberWithInt:INTERVALFACTOR],  
                             nil];
     
     factors = [dict copy];
@@ -294,6 +317,19 @@ factors, holidays, shrink, inputs, intLabel, intLength;
 
 
 // inputs dictionary
+-(BOOL)addInputsToSelf {
+    
+    NSDictionary *dict = [[self configureInputsAsAHT:435 andSvlGoal:80 andASAGoal:20 andIntervalLength:k30MIN andMaxOcc:100] copy];
+    
+    inputs = [dict copy];
+    [dict release];
+    
+    if ([inputs count] > 0) {
+        return YES;
+    }
+    return NO;
+}
+
 -(NSDictionary *)configureInputsAsAHT:(int)inputAHT andSvlGoal:(int)inputSvlGoal andASAGoal:(int)inputASAGoal 
                     andIntervalLength:(intervalLength)inputIntLength andMaxOcc:(int)inputMaxOcc {
     
@@ -307,27 +343,45 @@ factors, holidays, shrink, inputs, intLabel, intLength;
     return dict;
 }
 
+-(BOOL)addShrinkageModelToSelf {
+    shrink = [[Shrinkage alloc] initWithPaidHoursPerDay:8.0f andPaidDaysPerWeek:5.0f 
+                                                 andVac:80.0f andSick:48.0f andOtherLeave:0.0f andOffPhoneItemArray:nil];
+    if (shrink) {
+        return YES;
+    }
+    return NO;
+}
 
 // constructor
--(ForecastModel *)forecastModelWithName:(NSString *)name andGroupIdentifier:(NSString *)grpID andGroupName:(NSString *)grpName
+-(ForecastModel *)initWithName:(NSString *)name andGroupIdentifier:(NSString *)grpID andGroupName:(NSString *)grpName
                             andUsername:(NSString *)username andIntervalLength:(intervalLength)intLen 
                    andIntervalLabelType:(intervalLabelType)intLabType andHOOP:(NSArray *)hoursOfOp andHolidays:(NSArray *)hol
                               andInputs:(NSDictionary *)dictInputs andShrinkageFactor:(Shrinkage *)shrinkModel andFactors:(NSArray *)fct{
     self = [super init];
     
     if (self) {
+        // set from user inputs
         self.modelName = name;
         self.groupIdentifier = grpID;
         self.groupName = grpName;
         self.userName = username;
         self.intLength = intLen;
         self.intLabel = intLabType;
-        self.hoursOfOperation = [hoursOfOp copy];
-        self.holidays = [(NSMutableArray *)hol copy];
-        self.inputs = [dictInputs copy];
-        self.shrink = [shrinkModel copy];
-        self.factors = [fct copy];
+        
+        // calculated
+        BOOL okHOOP     = [self addHoursOfOperationToSelf];
+        BOOL okHols     = [self addHolidaysToSelf];
+        BOOL okInputs   = [self addInputsToSelf];
+        BOOL okShrink   = [self addShrinkageModelToSelf];
+        BOOL okFactors  = [self addFactorsToSelf];
+        
+        if (okHOOP && okHols && okInputs && okShrink && okFactors) {
+            isValid = YES;
+        } else {
+            isValid = NO;
+        }
     }
+    lastUpdated = [NSDate date];
     return self;
 }
 

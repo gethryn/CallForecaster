@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4989E165137458EB007AB8A5 /* ForecastModel+FactorCalc.m in Sources */ = {isa = PBXBuildFile; fileRef = 4989E164137458EA007AB8A5 /* ForecastModel+FactorCalc.m */; };
+		4989E16913745931007AB8A5 /* ErlangRequest+Reports.m in Sources */ = {isa = PBXBuildFile; fileRef = 4989E16813745931007AB8A5 /* ErlangRequest+Reports.m */; };
 		49CC4E141373D5660023462C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49CC4E131373D5660023462C /* Foundation.framework */; };
 		49CC4E171373D5660023462C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CC4E161373D5660023462C /* main.m */; };
 		49CC4E221373D5960023462C /* Forecast.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CC4E211373D5960023462C /* Forecast.m */; };
@@ -30,6 +32,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4989E163137458EA007AB8A5 /* ForecastModel+FactorCalc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ForecastModel+FactorCalc.h"; sourceTree = "<group>"; };
+		4989E164137458EA007AB8A5 /* ForecastModel+FactorCalc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ForecastModel+FactorCalc.m"; sourceTree = "<group>"; };
+		4989E16713745931007AB8A5 /* ErlangRequest+Reports.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ErlangRequest+Reports.h"; sourceTree = "<group>"; };
+		4989E16813745931007AB8A5 /* ErlangRequest+Reports.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ErlangRequest+Reports.m"; sourceTree = "<group>"; };
 		49CC4E0F1373D5660023462C /* CallForecaster */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CallForecaster; sourceTree = BUILT_PRODUCTS_DIR; };
 		49CC4E131373D5660023462C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		49CC4E161373D5660023462C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -103,7 +109,11 @@
 				49CC4E211373D5960023462C /* Forecast.m */,
 				49CC4E2F1373EBC10023462C /* ForecastModel.h */,
 				49CC4E301373EBC10023462C /* ForecastModel.m */,
+				4989E163137458EA007AB8A5 /* ForecastModel+FactorCalc.h */,
+				4989E164137458EA007AB8A5 /* ForecastModel+FactorCalc.m */,
 				49CC4E281373EAE40023462C /* ErlangRequest.h */,
+				4989E16713745931007AB8A5 /* ErlangRequest+Reports.h */,
+				4989E16813745931007AB8A5 /* ErlangRequest+Reports.m */,
 				49CC4E291373EAE40023462C /* ErlangRequest.m */,
 				49CC4E231373EA370023462C /* Shrinkage.h */,
 				49CC4E241373EA370023462C /* Shrinkage.m */,
@@ -170,6 +180,8 @@
 				49CC4E2D1373EAE40023462C /* ErlangRequest.m in Sources */,
 				49CC4E2E1373EAE40023462C /* gammadist.c in Sources */,
 				49CC4E311373EBC10023462C /* ForecastModel.m in Sources */,
+				4989E165137458EB007AB8A5 /* ForecastModel+FactorCalc.m in Sources */,
+				4989E16913745931007AB8A5 /* ErlangRequest+Reports.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +265,7 @@
 				49CC4E1F1373D5660023462C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
