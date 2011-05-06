@@ -67,6 +67,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4989E16A1374609B007AB8A5 /* Forecast */ = {
+			isa = PBXGroup;
+			children = (
+				49CC4E201373D5960023462C /* Forecast.h */,
+				49CC4E211373D5960023462C /* Forecast.m */,
+				49CC4E2F1373EBC10023462C /* ForecastModel.h */,
+				49CC4E301373EBC10023462C /* ForecastModel.m */,
+				4989E163137458EA007AB8A5 /* ForecastModel+FactorCalc.h */,
+				4989E164137458EA007AB8A5 /* ForecastModel+FactorCalc.m */,
+				4989E16C137460C3007AB8A5 /* Shrinkage Factor */,
+			);
+			name = Forecast;
+			sourceTree = "<group>";
+		};
+		4989E16B137460B0007AB8A5 /* Erlang Request */ = {
+			isa = PBXGroup;
+			children = (
+				49CC4E281373EAE40023462C /* ErlangRequest.h */,
+				4989E16713745931007AB8A5 /* ErlangRequest+Reports.h */,
+				4989E16813745931007AB8A5 /* ErlangRequest+Reports.m */,
+				49CC4E291373EAE40023462C /* ErlangRequest.m */,
+				49CC4E261373EAE40023462C /* erlangc.c */,
+				49CC4E271373EAE40023462C /* erlangc.h */,
+				49CC4E2A1373EAE40023462C /* gammadist.c */,
+				49CC4E2B1373EAE40023462C /* gammadist.h */,
+			);
+			name = "Erlang Request";
+			sourceTree = "<group>";
+		};
+		4989E16C137460C3007AB8A5 /* Shrinkage Factor */ = {
+			isa = PBXGroup;
+			children = (
+				49CC4E231373EA370023462C /* Shrinkage.h */,
+				49CC4E241373EA370023462C /* Shrinkage.m */,
+			);
+			name = "Shrinkage Factor";
+			sourceTree = "<group>";
+		};
 		49CC4E041373D5660023462C = {
 			isa = PBXGroup;
 			children = (
@@ -105,22 +143,8 @@
 		49CC4E181373D5660023462C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				49CC4E201373D5960023462C /* Forecast.h */,
-				49CC4E211373D5960023462C /* Forecast.m */,
-				49CC4E2F1373EBC10023462C /* ForecastModel.h */,
-				49CC4E301373EBC10023462C /* ForecastModel.m */,
-				4989E163137458EA007AB8A5 /* ForecastModel+FactorCalc.h */,
-				4989E164137458EA007AB8A5 /* ForecastModel+FactorCalc.m */,
-				49CC4E281373EAE40023462C /* ErlangRequest.h */,
-				4989E16713745931007AB8A5 /* ErlangRequest+Reports.h */,
-				4989E16813745931007AB8A5 /* ErlangRequest+Reports.m */,
-				49CC4E291373EAE40023462C /* ErlangRequest.m */,
-				49CC4E231373EA370023462C /* Shrinkage.h */,
-				49CC4E241373EA370023462C /* Shrinkage.m */,
-				49CC4E261373EAE40023462C /* erlangc.c */,
-				49CC4E271373EAE40023462C /* erlangc.h */,
-				49CC4E2A1373EAE40023462C /* gammadist.c */,
-				49CC4E2B1373EAE40023462C /* gammadist.h */,
+				4989E16A1374609B007AB8A5 /* Forecast */,
+				4989E16B137460B0007AB8A5 /* Erlang Request */,
 				49CC4E191373D5660023462C /* CallForecaster-Prefix.pch */,
 			);
 			name = "Supporting Files";

@@ -50,18 +50,25 @@ typedef enum {INTRADAY, DAILY, MONTHLY, YEARLY} forecastType;
     int ncoAnnual, ncoMonthlyAverage, ncoDailyAverage, ncoIntervalAverage; // average values    
     forecastType fcType;
     ForecastModel *fcModel;
+    NSMutableArray *dayOfYear;      // { dayName; date; {intervalLabel; ErlangRequest}; dayFactor; forecastNCO; rawFTE } [index+1=intDayOfYear].
+    NSMutableArray *monthOfYear;    // { monthName; daysOpenInMonth; monthFactor; forecastNCO} [index+1=monthName].
 }
+
+@property (readwrite) int ncoAnnual, ncoMonthlyAverage, ncoDailyAverage, ncoIntervalAverage;
+@property (assign) ForecastModel *fcModel;
+@property (assign) NSMutableArray *dayOfYear, *monthOfYear;
 
 // shorthand for day of year, etc
 -(int)dayOfYearWithYear:(NSDate *)forecastDate;
 -(int)daysOpenInMonth:(monthName)monthName;
 
 // create an interval name by providing the number of seconds
--(NSString *)getIntervalWithSeconds:(int)seconds andIntervalLength:(intervalLength)intLength;
+-(NSString *)getIntervalLabelWithSeconds:(int)seconds andIntervalLength:(intervalLength)intLength includeMarker:(BOOL)mrk;
 
 // create a forecasted value for a given period
 -(int)forecastForMonth:(monthName)forecastMonth withAnnualVolume:(int)ncoAnnual;
 -(int)forecastForDay:(dayName)forecastDay inMonth:(monthName)monthName withAnnualVolume:(int)ncoAnnual;
--(int)forecastForInterval:(NSString *)intName onDay:(dayName)forecastDay inMonth:(monthName)monthName withAnnualVolume:(int)ncoAnnual;
+-(int)forecastForInterval:(int)intSecondsSinceMidnight onDay:(dayName)forecastDay 
+                  inMonth:(monthName)monthName withAnnualVolume:(int)ncoAnnual;
 
 @end
