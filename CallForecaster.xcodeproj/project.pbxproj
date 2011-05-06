@@ -1,0 +1,224 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		49CC4E141373D5660023462C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49CC4E131373D5660023462C /* Foundation.framework */; };
+		49CC4E171373D5660023462C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CC4E161373D5660023462C /* main.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		49CC4E0D1373D5660023462C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		49CC4E0F1373D5660023462C /* CallForecaster */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CallForecaster; sourceTree = BUILT_PRODUCTS_DIR; };
+		49CC4E131373D5660023462C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		49CC4E161373D5660023462C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		49CC4E191373D5660023462C /* CallForecaster-Prefix.pch */ = {isa = PBXFileReference; path = "CallForecaster-Prefix.pch"; sourceTree = "<group>"; };
+		49CC4E1A1373D5660023462C /* CallForecaster.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = CallForecaster.1; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		49CC4E0C1373D5660023462C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49CC4E141373D5660023462C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		49CC4E041373D5660023462C = {
+			isa = PBXGroup;
+			children = (
+				49CC4E151373D5660023462C /* CallForecaster */,
+				49CC4E121373D5660023462C /* Frameworks */,
+				49CC4E101373D5660023462C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		49CC4E101373D5660023462C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				49CC4E0F1373D5660023462C /* CallForecaster */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		49CC4E121373D5660023462C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				49CC4E131373D5660023462C /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		49CC4E151373D5660023462C /* CallForecaster */ = {
+			isa = PBXGroup;
+			children = (
+				49CC4E161373D5660023462C /* main.m */,
+				49CC4E1A1373D5660023462C /* CallForecaster.1 */,
+				49CC4E181373D5660023462C /* Supporting Files */,
+			);
+			path = CallForecaster;
+			sourceTree = "<group>";
+		};
+		49CC4E181373D5660023462C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				49CC4E191373D5660023462C /* CallForecaster-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		49CC4E0E1373D5660023462C /* CallForecaster */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 49CC4E1D1373D5660023462C /* Build configuration list for PBXNativeTarget "CallForecaster" */;
+			buildPhases = (
+				49CC4E0B1373D5660023462C /* Sources */,
+				49CC4E0C1373D5660023462C /* Frameworks */,
+				49CC4E0D1373D5660023462C /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CallForecaster;
+			productName = CallForecaster;
+			productReference = 49CC4E0F1373D5660023462C /* CallForecaster */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		49CC4E061373D5660023462C /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 49CC4E091373D5660023462C /* Build configuration list for PBXProject "CallForecaster" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 49CC4E041373D5660023462C;
+			productRefGroup = 49CC4E101373D5660023462C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				49CC4E0E1373D5660023462C /* CallForecaster */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		49CC4E0B1373D5660023462C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49CC4E171373D5660023462C /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		49CC4E1B1373D5660023462C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		49CC4E1C1373D5660023462C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		49CC4E1E1373D5660023462C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CallForecaster/CallForecaster-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		49CC4E1F1373D5660023462C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CallForecaster/CallForecaster-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		49CC4E091373D5660023462C /* Build configuration list for PBXProject "CallForecaster" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49CC4E1B1373D5660023462C /* Debug */,
+				49CC4E1C1373D5660023462C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		49CC4E1D1373D5660023462C /* Build configuration list for PBXNativeTarget "CallForecaster" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49CC4E1E1373D5660023462C /* Debug */,
+				49CC4E1F1373D5660023462C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 49CC4E061373D5660023462C /* Project object */;
+}
