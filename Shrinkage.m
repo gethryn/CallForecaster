@@ -12,7 +12,7 @@
 @implementation Shrinkage
 
 @synthesize paidHoursPerDay, paidHoursPerYearVacation, paidHoursPerYearSick, paidHoursPerYearOther, paidDaysPerWeek, 
-offPhoneItems, paidHoursTotal, paidHoursAtWorkTotal, paidHoursOnLeaveTotal, offPhoneHoursTotal, prodHoursTotal, factorShrinkage;
+offPhoneItems, paidHoursTotal, paidHoursAtWorkTotal, paidHoursOnLeaveTotal, offPhoneHoursTotal, prodHoursTotal, factorShrinkage, isValid;
 
 -(BOOL)addOffPhoneItem:(NSString *)name ofValue:(float)value 
         withConversion:(shrinkConversion)cnv andCritcality:(shrinkCriticality)crit {
@@ -143,6 +143,40 @@ offPhoneItems, paidHoursTotal, paidHoursAtWorkTotal, paidHoursOnLeaveTotal, offP
 
 
 // constuctor (will calculate all other values)
+-(BOOL)performShrinkageCalculationWithItems:(NSMutableArray *)shrinkItems {
+    
+    BOOL shrinkImported = NO;
+    
+    if (self) {
+        // calculations for at work
+        paidHoursTotal         = ( paidHoursPerDay * paidDaysPerWeek * WEEKSinYEAR / MONTHSinYEAR );
+        paidHoursOnLeaveTotal  = ( ( paidHoursPerYearVacation + paidHoursPerYearSick + paidHoursPerYearOther ) / MONTHSinYEAR );
+        paidHoursAtWorkTotal   = ( paidHoursTotal - paidHoursOnLeaveTotal );
+        
+        // was an array Provided?  (normal prod operation)
+        if (shrinkItems) {
+            offPhoneItems = [shrinkItems retain];  
+            [shrinkItems release];  // where do I release this?  assume here
+            shrinkImported = YES;
+        } else {
+            // DEV only -- import dummy Array.
+            shrinkImported = [self addShrinkItemsToSelf];
+        }
+        
+        // if we managed to import shrink items, calculate the total, otherwise 0
+        if (shrinkImported) {
+            self.offPhoneHoursTotal = [self calculateShrinkageHoursTotal];
+        } else {
+            self.offPhoneHoursTotal = 0.0f;
+        }
+        self.prodHoursTotal         = ( paidHoursAtWorkTotal - offPhoneHoursTotal );
+        
+        // calculate shrink factor
+        self.factorShrinkage        = ( 1.0f + ( (paidHoursTotal - prodHoursTotal ) / paidHoursTotal ) );
+    }
+    return shrinkImported;
+}
+
 -(Shrinkage *)initWithPaidHoursPerDay:(float)paidPerDay andPaidDaysPerWeek:(float)daysPerWeek andVac:(float)vacHours
                               andSick:(float)sickHours andOtherLeave:(float)otherHours andOffPhoneItemArray:(NSArray *)shrinkItems {
     self = [super init];
@@ -161,19 +195,46 @@ offPhoneItems, paidHoursTotal, paidHoursAtWorkTotal, paidHoursOnLeaveTotal, offP
         self.paidHoursAtWorkTotal   = ( paidHoursTotal - paidHoursOnLeaveTotal );
         
         // calculations for off phone: get thre shrinkage items and add them to the object.
-        // during DEV this is used to dummy import; normally we would:  self.offPhoneItems = (NSMutableArray *)shrinkItems;
-        BOOL shrinkImported = [self addShrinkItemsToSelf];
+        BOOL shrinkImported = [self performShrinkageCalculationWithItems:(NSMutableArray *)shrinkItems];
+        isValid = shrinkImported;
+    }
+    return self;
+}
+
+// encoding and decoding for object saving and opening.
+-(void)encodeWithCoder:(NSCoder *)coder {
+    // instructions for encoding the object
+    [coder encodeFloat:paidHoursPerDay forKey:@"SKPaidHoursPerDay"];
+    [coder encodeFloat:paidDaysPerWeek forKey:@"SKPaidDaysPerWeek"];
+    [coder encodeFloat:paidHoursPerYearVacation forKey:@"SKPaidHoursPerYearVacation"];
+    [coder encodeFloat:paidHoursPerYearSick forKey:@"SKPaidHoursPerYearSick"];
+    [coder encodeFloat:paidHoursPerYearOther forKey:@"SKPaidHoursPerYearOther"];
+    [coder encodeFloat:paidHoursTotal forKey:@"SKPaidHoursTotal"];
+    [coder encodeFloat:paidHoursAtWorkTotal forKey:@"SKPaidHoursAtWorkTotal"];
+    [coder encodeFloat:paidHoursOnLeaveTotal forKey:@"SKPaidHoursOnLeaveTotal"];
+    [coder encodeObject:offPhoneItems forKey:@"SKOffPhoneItems"];
+    [coder encodeFloat:offPhoneHoursTotal forKey:@"SKOffPhoneHoursTotal"];
+    [coder encodeFloat:prodHoursTotal forKey:@"SKProdHoursTotal"];
+    [coder encodeFloat:factorShrinkage forKey:@"SKFactorShrinkage"];
+    [coder encodeFloat:0.1f forKey:@"SKCoderVersion"];
+}
+
+// create object from saved file, using coder.
+-(Shrinkage *)initWithCoder:(NSCoder *)coder {
+    
+    self = [super init];
+    if (self) {
+        paidHoursPerDay = [coder decodeFloatForKey:@"SKPaidHoursPerDay"];
+        paidDaysPerWeek = [coder decodeFloatForKey:@"SKPaidDaysPerWeek"];
+        paidHoursPerYearVacation = [coder decodeFloatForKey:@"SKPaidHoursPerYearVacation"];
+        paidHoursPerYearSick = [coder decodeFloatForKey:@"SKPaidHoursPerYearSick"];
+        paidHoursPerYearOther = [coder decodeFloatForKey:@"SKPaidHoursPerYearOther"];
+        offPhoneItems = [[coder decodeObjectForKey:@"SKOffPhoneItems"] retain];
         
-        // if we managed to import shrink items, calculate the total, otherwise 0
-        if (shrinkImported) {
-            self.offPhoneHoursTotal = [self calculateShrinkageHoursTotal];
-        } else {
-            self.offPhoneHoursTotal = 0.0f;
-        }
-        self.prodHoursTotal         = ( paidHoursAtWorkTotal - offPhoneHoursTotal );
+        // calculations for off phone: get thre shrinkage items and add them to the object.
+        BOOL shrinkImported = [self performShrinkageCalculationWithItems:offPhoneItems];
+        isValid = shrinkImported;
         
-        // calculate shrink factor
-        self.factorShrinkage        = ( 1.0f + ( (paidHoursTotal - prodHoursTotal ) / paidHoursTotal ) );
     }
     return self;
 }

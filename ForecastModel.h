@@ -86,4 +86,8 @@ typedef enum {SUN,MON,TUE,WED,THU,FRI,SAT,HOL} dayName;
                    andIntervalLabelType:(intervalLabelType)intLabType andHOOP:(NSArray *)hoursOfOp andHolidays:(NSArray *)hol
                               andInputs:(NSDictionary *)dictInputs andShrinkageFactor:(Shrinkage *)shrinkModel andFactors:(NSArray *)fct;
 
+// model encoding
+-(void)encodeWithCoder:(NSCoder *)coder;
+-(id)initWithCoder:(NSCoder *)coder;
+
 @end

@@ -10,40 +10,8 @@
 #import "ErlangRequest.h"
 #import "ForecastModel.h"
 
-/*  FULL FORECAST OBJECT
- 
-YEAR: int
-    yearDigits: int
-    ncoAnnual: int
-    ncoMonthlyAverage: int
-    ncoDailyAverage: int
-    ncoIntervalAverage: int
-    dayInt:
-        1:
-            dayName: dayName
-            date: NSDate
-            dictionaryOfIntervals: NSDictionary
-                @"00:00": ErlangRequest
-                @"00:30": ErlangRequest
-                ...etc
-            dayFactor: float
-            forecastNCO: float
-            fteRaw: float
-        ...etc
-    monthInt:
-        1:
-            monthName: monthName
-            daysOpenInMonth: int
-            forecastNCO: int
-            monthFactor: float
-        ...etc
-SETUP: ForecastModelObject { }
- 
- */
 
 typedef enum {INTRADAY, DAILY, MONTHLY, YEARLY} forecastType;
-
-
 
 @interface Forecast : NSObject {
 @private

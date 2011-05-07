@@ -31,11 +31,13 @@ typedef enum {  WEEKSinYEAR = 52, MONTHSinYEAR=12, MINSinHOUR=60 } timeConstants
     float offPhoneHoursTotal;
     float prodHoursTotal;
     float factorShrinkage;
+    BOOL  isValid;
 }
 
 @property (readwrite) float paidHoursPerDay, paidHoursPerYearVacation, paidHoursPerYearSick, paidHoursPerYearOther, paidDaysPerWeek;
 @property (readwrite,assign) NSMutableArray *offPhoneItems;
 @property (readwrite) float paidHoursTotal, paidHoursAtWorkTotal, paidHoursOnLeaveTotal, offPhoneHoursTotal, prodHoursTotal, factorShrinkage;
+@property (readwrite) BOOL isValid;
 
 
 // add a shrinkage item to the offPhoneItems array (NOTE: NAME MUST BE UNIQUE ... ??)
@@ -47,7 +49,12 @@ typedef enum {  WEEKSinYEAR = 52, MONTHSinYEAR=12, MINSinHOUR=60 } timeConstants
 
 
 // constuctor (will calculate all other values)
+-(BOOL)performShrinkageCalculationWithItems:(NSMutableArray *)shrinkItems;
 -(Shrinkage *)initWithPaidHoursPerDay:(float)paidPerDay andPaidDaysPerWeek:(float)daysPerWeek andVac:(float)vacHours
                               andSick:(float)sickHours andOtherLeave:(float)otherHours andOffPhoneItemArray:(NSArray *)shrinkItems;
+
+// encoding and decoding for object saving and opening.
+-(void)encodeWithCoder:(NSCoder *)coder;
+-(id)initWithCoder:(NSCoder *)coder;
 
 @end

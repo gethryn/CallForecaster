@@ -384,6 +384,70 @@ modelForecastYear, modelYearNCO, modelMonthAvgNCO, modelDayAvgNCO, modelInterval
     lastUpdated = [NSDate date];
     return self;
 }
+/*
+ @property (assign) NSString *modelName, *groupIdentifier, *groupName, *userName; 
+ @property (assign) NSDate *lastUpdated;
+ @property (assign) NSArray *hoursOfOperation;
+ @property (assign) NSMutableArray *holidays;
+ @property (assign) Shrinkage *shrink;
+ @property (assign) NSDictionary *inputs, *factors;
+ @property (readwrite) intervalLabelType intLabel;
+ @property (readwrite) intervalLength intLength;
+ @property (readwrite) BOOL isValid;
+ @property (readwrite) int modelForecastYear, modelYearNCO, modelMonthAvgNCO, modelDayAvgNCO, modelIntervalAvgNCO;
+ */
+
+// endocoders and decoders
+-(void)encodeWithCoder:(NSCoder *)coder {
+    
+    // instructions for encoding the object
+    [coder encodeObject:modelName forKey:@"FMModelName"];
+    [coder encodeObject:groupIdentifier forKey:@"FMGroupID"];
+    [coder encodeObject:groupName forKey:@"FMGroupName"];
+    [coder encodeObject:userName forKey:@"FMUserName"];
+    [coder encodeObject:lastUpdated forKey:@"FMLastUpdated"];
+    [coder encodeObject:hoursOfOperation forKey:@"FMHoursOfOperation"];
+    [coder encodeObject:holidays forKey:@"FMHolidays"];
+    [coder encodeObject:shrink forKey:@"FMShrinkageModel"];
+    [coder encodeObject:inputs forKey:@"FMInputs"];
+    [coder encodeObject:factors forKey:@"FMFactors"];
+    [coder encodeInt:intLabel forKey:@"FMIntLabelType"];
+    [coder encodeInt:intLength forKey:@"FMIntervalLength"];
+    [coder encodeBool:isValid forKey:@"FMIsValid"];
+    [coder encodeInt:modelForecastYear forKey:@"FMModelFCYear"];
+    [coder encodeInt:modelYearNCO forKey:@"FMModelYearNCO"];
+    [coder encodeInt:modelMonthAvgNCO forKey:@"FMModelMonthAvgNCO"];
+    [coder encodeInt:modelDayAvgNCO forKey:@"FMModelDayAvgNCO"];
+    [coder encodeInt:modelIntervalAvgNCO forKey:@"FMModelIntervalAvgNCO"];
+    [coder encodeFloat:0.1f forKey:@"version"];
+}
+
+-(ForecastModel *)initWithCoder:(NSCoder *)coder {
+    
+    self = [super init];
+    if (self) {
+        modelName = [coder decodeObjectForKey:@"FMModelName"];
+        groupIdentifier = [coder decodeObjectForKey:@"FMGroupID"];
+        groupName = [coder decodeObjectForKey:@"FMGroupName"];
+        userName = [coder decodeObjectForKey:@"FMUserName"];
+        lastUpdated = [coder decodeObjectForKey:@"FMLastUpdated"];
+        hoursOfOperation = [coder decodeObjectForKey:@"FMHoursOfOperation"];
+        holidays = [coder decodeObjectForKey:@"FMHolidays"];
+        shrink = [coder decodeObjectForKey:@"FMShrinkageModel"];
+        inputs = [coder decodeObjectForKey:@"FMInputs"];
+        factors = [coder decodeObjectForKey:@"FMFactors"];
+        intLabel = [coder decodeIntForKey:@"FMIntLabelType"];
+        intLength = [coder decodeIntForKey:@"FMIntervalLength"];
+        isValid = [coder decodeBoolForKey:@"FMIsValid"];
+        modelForecastYear = [coder decodeIntForKey:@"FMModelFCYear"];
+        modelYearNCO = [coder decodeIntForKey:@"FMModelYearNCO"];
+        modelMonthAvgNCO = [coder decodeIntForKey:@"FMModelMonthAvgNCO"];
+        modelDayAvgNCO = [coder decodeIntForKey:@"FMModelDayAvgNCO"];
+        modelIntervalAvgNCO = [coder decodeIntForKey:@"FMModelIntervalAvgNCO"];
+        isValid = [coder decodeFloatForKey:@"version"];     
+    }
+    return self;
+}
 
 
 - (void)dealloc
