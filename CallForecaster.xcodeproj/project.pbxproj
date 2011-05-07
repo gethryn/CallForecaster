@@ -36,6 +36,7 @@
 		4989E164137458EA007AB8A5 /* ForecastModel+FactorCalc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ForecastModel+FactorCalc.m"; sourceTree = "<group>"; };
 		4989E16713745931007AB8A5 /* ErlangRequest+Reports.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ErlangRequest+Reports.h"; sourceTree = "<group>"; };
 		4989E16813745931007AB8A5 /* ErlangRequest+Reports.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ErlangRequest+Reports.m"; sourceTree = "<group>"; };
+		498B67F11375B407003A58CF /* ForecastFactors.plist */ = {isa = PBXFileReference; fileEncoding = 4; path = ForecastFactors.plist; sourceTree = "<group>"; };
 		49CC4E0F1373D5660023462C /* CallForecaster */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CallForecaster; sourceTree = BUILT_PRODUCTS_DIR; };
 		49CC4E131373D5660023462C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		49CC4E161373D5660023462C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -105,6 +106,14 @@
 			name = "Shrinkage Factor";
 			sourceTree = "<group>";
 		};
+		498B67F31375B411003A58CF /* Property Lists */ = {
+			isa = PBXGroup;
+			children = (
+				498B67F11375B407003A58CF /* ForecastFactors.plist */,
+			);
+			name = "Property Lists";
+			sourceTree = "<group>";
+		};
 		49CC4E041373D5660023462C = {
 			isa = PBXGroup;
 			children = (
@@ -146,6 +155,7 @@
 				4989E16A1374609B007AB8A5 /* Forecast */,
 				4989E16B137460B0007AB8A5 /* Erlang Request */,
 				49CC4E191373D5660023462C /* CallForecaster-Prefix.pch */,
+				498B67F31375B411003A58CF /* Property Lists */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";

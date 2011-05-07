@@ -16,6 +16,7 @@ typedef enum {MONTHFACTOR, WEEKDAYFACTOR, INTERVALFACTOR, HOLIDAYFACTOR} factorT
 typedef enum {k15MIN = 900, k30MIN = 1800, k60MIN = 3600} intervalLength;
 typedef enum {JAN=1,FEB=2,MAR=3,APR=4,MAY=5,JUN=6,JUL=7,AUG=8,SEP=9,OCT=10,NOV=11,DEC=12} monthName;
 typedef enum {SUN,MON,TUE,WED,THU,FRI,SAT,HOL} dayName;
+typedef enum {PLIST, CSV} importFileType;
 
 @interface ForecastModel : NSObject {
 @private
@@ -60,14 +61,15 @@ typedef enum {SUN,MON,TUE,WED,THU,FRI,SAT,HOL} dayName;
 -(NSArray *)getHOOPArrayOfIntervalsFrom:(NSDate *)openTime to:(NSDate *)closeTime forDay:(dayName)day;
 -(NSString *)makeIntervalLabelForIntervalStaringAt:(NSDate *)intStart withMarker:(BOOL)includeMarker;
 
+// read in factors in variety of formats
+-(id)importFactorsFromFileWithFormat:(importFileType)filetype;
+
 // create or read in factors
 -(BOOL)addFactorsToSelf;
--(NSDictionary *)getFactorsFromCSV:(NSString *)fileName forType:(factorType)factorType;
+-(NSArray *)getFactorsFromFile:(NSString *)fileName ofFileType:(importFileType)fmt forFactorType:(factorType)factorType;
 -(NSDictionary *)buildFactorsFromArray:(NSArray *)factorArray forType:(factorType)factorType withFactors:(NSArray *)factorValues;
 
 // create or read in holidays
--(NSArray *)getHolidaysFromCSV:(NSString *)fileName;
--(BOOL)addHolidaysToSelf;
 -(BOOL)addHolidayForDate:(NSDate *)holDate withDesc:(NSString *)holDesc andHolidayFactor:(float)holFactor;
 -(BOOL)removeHolidayForDate:(NSDate *)holDate;
 -(BOOL)isHoliday:(NSDate *)holDate;

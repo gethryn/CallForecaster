@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>dayOfWeekFactors</key>
+	<array>
+		<real>0</real>
+		<real>0.9963</real>
+		<real>1.0242</real>
+		<real>0.9983</real>
+		<real>0.9917</real>
+		<real>0.9893</real>
+		<real>0</real>
+	</array>
+	<key>holidayFactors</key>
+	<array>
+		<dict>
+			<key>date</key>
+			<date>2011-01-01T00:00:00Z</date>
+			<key>desc</key>
+			<string>New Year&apos;s Day</string>
+			<key>holfactor</key>
+			<real>0</real>
+		</dict>
+		<dict>
+			<key>date</key>
+			<date>2011-01-26T00:00:00Z</date>
+			<key>desc</key>
+			<string>Australia Day</string>
+			<key>holfactor</key>
+			<real>0</real>
+		</dict>
+		<dict>
+			<key>date</key>
+			<date>2011-04-22T00:00:00Z</date>
+			<key>desc</key>
+			<string>Good Friday</string>
+			<key>holfactor</key>
+			<real>0</real>
+		</dict>
+		<dict>
+			<key>date</key>
+			<date>2011-04-24T00:00:00Z</date>
+			<key>desc</key>
+			<string>Easter Sunday</string>
+			<key>holfactor</key>
+			<real>0</real>
+		</dict>
+		<dict>
+			<key>date</key>
+			<date>2011-04-25T00:00:00Z</date>
+			<key>desc</key>
+			<string>ANZAC Day</string>
+			<key>holfactor</key>
+			<real>0</real>
+		</dict>
+		<dict>
+			<key>date</key>
+			<date>2011-04-26T00:00:00Z</date>
+			<key>desc</key>
+			<string>Easter Monday (Obs)</string>
+			<key>holfactor</key>
+			<real>0</real>
+		</dict>
+		<dict>
+			<key>date</key>
+			<date>2011-06-13T00:00:00Z</date>
+			<key>desc</key>
+			<string>Queen&apos;s Birthday</string>
+			<key>holfactor</key>
+			<real>0</real>
+		</dict>
+		<dict>
+			<key>date</key>
+			<date>2011-08-08T00:00:00Z</date>
+			<key>desc</key>
+			<string>Bank Holiday</string>
+			<key>holfactor</key>
+			<real>0</real>
+		</dict>
+		<dict>
+			<key>date</key>
+			<date>2011-10-03T00:00:00Z</date>
+			<key>desc</key>
+			<string>Labour Day NSW</string>
+			<key>holfactor</key>
+			<real>0</real>
+		</dict>
+		<dict>
+			<key>date</key>
+			<date>2011-12-25T00:00:00Z</date>
+			<key>desc</key>
+			<string>Chrsitmas Day</string>
+			<key>holfactor</key>
+			<real>0</real>
+		</dict>
+		<dict>
+			<key>date</key>
+			<date>2011-12-26T00:00:00Z</date>
+			<key>desc</key>
+			<string>Boxing Day</string>
+			<key>holfactor</key>
+			<real>0</real>
+		</dict>
+	</array>
+	<key>intervalFactors</key>
+	<array>
+		<real>0</real>
+		<real>0</real>
+		<real>0</real>
+		<real>0</real>
+		<real>0</real>
+		<real>0</real>
+		<real>0</real>
+		<real>0</real>
+		<real>0</real>
+		<real>0</real>
+		<real>0</real>
+		<real>0</real>
+		<real>0</real>
+		<real>0</real>
+		<real>0</real>
+		<real>0</real>
+		<real>0</real>
+		<real>1.02</real>
+		<real>0.995</real>
+		<real>0.9708</real>
+		<real>1.0272</real>
+		<real>0.9814000000000001</real>
+		<real>0.9881</real>
+		<real>1.0046</real>
+		<real>0.954</real>
+		<real>1.0607</real>
+		<real>0.9833</real>
+		<real>1.0147</real>
+		<real>0.9792999999999999</real>
+		<real>1.0525</real>
+		<real>0.9804</real>
+		<real>1.0054</real>
+		<real>0.9846</real>
+		<real>0</real>
+		<real>0</real>
+		<real>0</real>
+		<real>0</real>
+		<real>0</real>
+		<real>0</real>
+		<real>0</real>
+		<real>0</real>
+		<real>0</real>
+		<real>0</real>
+		<real>0</real>
+		<real>0</real>
+		<real>0</real>
+		<real>0</real>
+		<real>0</real>
+	</array>
+	<key>monthFactors</key>
+	<array>
+		<real>1.1745</real>
+		<real>1.132</real>
+		<real>1.0376</real>
+		<real>1.0316</real>
+		<real>0.8536</real>
+		<real>1.177</real>
+		<real>0.7833</real>
+		<real>0.9118000000000001</real>
+		<real>0.8068</real>
+		<real>0.9993</real>
+		<real>0.996</real>
+		<real>1.0965</real>
+	</array>
+</dict>
+</plist>
