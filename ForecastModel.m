@@ -426,25 +426,25 @@ modelForecastYear, modelYearNCO, modelMonthAvgNCO, modelDayAvgNCO, modelInterval
     
     self = [super init];
     if (self) {
-        modelName = [coder decodeObjectForKey:@"FMModelName"];
-        groupIdentifier = [coder decodeObjectForKey:@"FMGroupID"];
-        groupName = [coder decodeObjectForKey:@"FMGroupName"];
-        userName = [coder decodeObjectForKey:@"FMUserName"];
-        lastUpdated = [coder decodeObjectForKey:@"FMLastUpdated"];
-        hoursOfOperation = [coder decodeObjectForKey:@"FMHoursOfOperation"];
-        holidays = [coder decodeObjectForKey:@"FMHolidays"];
-        shrink = [coder decodeObjectForKey:@"FMShrinkageModel"];
-        inputs = [coder decodeObjectForKey:@"FMInputs"];
-        factors = [coder decodeObjectForKey:@"FMFactors"];
-        intLabel = [coder decodeIntForKey:@"FMIntLabelType"];
-        intLength = [coder decodeIntForKey:@"FMIntervalLength"];
-        isValid = [coder decodeBoolForKey:@"FMIsValid"];
+        modelName =         [[coder decodeObjectForKey:@"FMModelName"] retain];
+        groupIdentifier =   [[coder decodeObjectForKey:@"FMGroupID"] retain];
+        groupName =         [[coder decodeObjectForKey:@"FMGroupName"] retain];
+        userName =          [[coder decodeObjectForKey:@"FMUserName"] retain];
+        lastUpdated =       [[coder decodeObjectForKey:@"FMLastUpdated"] retain];
+        hoursOfOperation =  [[coder decodeObjectForKey:@"FMHoursOfOperation"] retain];
+        holidays =          [[coder decodeObjectForKey:@"FMHolidays"] retain];
+        shrink =            [[coder decodeObjectForKey:@"FMShrinkageModel"] retain];
+        inputs =            [[coder decodeObjectForKey:@"FMInputs"]retain];
+        factors =           [[coder decodeObjectForKey:@"FMFactors"] retain];
+        intLabel =          [coder decodeIntForKey:@"FMIntLabelType"];
+        intLength =         [coder decodeIntForKey:@"FMIntervalLength"];
+        isValid =           [coder decodeBoolForKey:@"FMIsValid"];
         modelForecastYear = [coder decodeIntForKey:@"FMModelFCYear"];
-        modelYearNCO = [coder decodeIntForKey:@"FMModelYearNCO"];
-        modelMonthAvgNCO = [coder decodeIntForKey:@"FMModelMonthAvgNCO"];
-        modelDayAvgNCO = [coder decodeIntForKey:@"FMModelDayAvgNCO"];
-        modelIntervalAvgNCO = [coder decodeIntForKey:@"FMModelIntervalAvgNCO"];
-        isValid = [coder decodeFloatForKey:@"version"];     
+        modelYearNCO =      [coder decodeIntForKey:@"FMModelYearNCO"];
+        modelMonthAvgNCO =  [coder decodeIntForKey:@"FMModelMonthAvgNCO"];
+        modelDayAvgNCO =    [coder decodeIntForKey:@"FMModelDayAvgNCO"];
+        modelIntervalAvgNCO=[coder decodeIntForKey:@"FMModelIntervalAvgNCO"];
+        isValid =           [coder decodeFloatForKey:@"version"];     
     }
     return self;
 }

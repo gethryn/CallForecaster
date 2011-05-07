@@ -27,21 +27,24 @@ int main (int argc, const char * argv[])
     [shrink release];
     
     Shrinkage *shrink2 = [[NSKeyedUnarchiver unarchiveObjectWithFile:archivePath] retain];
-     NSLog(@"\n\nSHRINKAGE FACTOR: %2f\tNET PROD HOURS: %2f\n\n", shrink2.factorShrinkage, shrink2.prodHoursTotal);
+    NSLog(@"\n\nSHRINKAGE FACTOR: %2f\tNET PROD HOURS: %2f\n\n", shrink2.factorShrinkage, shrink2.prodHoursTotal);
     
     [shrink2 release];
-    /*
     
-     ForecastModel *fcModel = [[ForecastModel alloc] initWithName:@"Test Forecast Model" andGroupIdentifier:@"12345" andGroupName:@"gethdev.com" andUsername:@"Gethryn Ghavalas" andIntervalLength:k30MIN andIntervalLabelType:LABELISSTART andHOOP:nil andHolidays:nil andInputs:nil andShrinkageFactor:nil andFactors:nil];
-     
-     NSString *archivePath = [NSTemporaryDirectory() 
-     stringByAppendingPathComponent:@"FCModel.archive"];
-     BOOL qpla = [NSArchiver archiveRootObject:fcModel
-     toFile:archivePath];
-     
-     NSLog(@"\n%@\nby %@, %i",fcModel.modelName, fcModel.userName, qpla);
-     
-     */
+    
+    ForecastModel *fcModel = [[ForecastModel alloc] initWithName:@"Test Forecast Model" andGroupIdentifier:@"12345" andGroupName:@"gethdev.com" andUsername:@"Gethryn Ghavalas" andIntervalLength:k30MIN andIntervalLabelType:LABELISSTART andHOOP:nil andHolidays:nil andInputs:nil andShrinkageFactor:nil andFactors:nil];
+    
+    NSLog(@"\nINITIAL OBJECT: %@\nby %@",fcModel.modelName, fcModel.userName);  
+    
+    NSString *archivePathFM = [NSTemporaryDirectory() stringByAppendingPathComponent:@"ForecastModel.archive"];
+    BOOL qpla = [NSKeyedArchiver archiveRootObject:fcModel toFile:archivePathFM];
+    [fcModel release];
+    
+    ForecastModel *fcModel2 = [[NSKeyedUnarchiver unarchiveObjectWithFile:archivePathFM] retain];
+    
+    NSLog(@"\nDECODED OBJECT%@\nby %@, %i",fcModel2.modelName, fcModel2.userName, qpla);
+    
+    [fcModel2 release];
     
     [pool drain];
     return 0;
